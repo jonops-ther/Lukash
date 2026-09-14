@@ -237,9 +237,10 @@
         body.embedded {
           min-height: 100vh;
         }
-        /* Contenido centrado dentro del iframe (sin espacio de header) */
+        /* Contenido del iframe con mayor separación superior: queda por debajo
+           de la barra superior fija (56px) y más abajo dentro de la pantalla. */
         body.embedded main {
-          padding-top: 0;
+          padding-top: clamp(6.5rem, 24vh, 18rem);
         }
     </style>
 </head>
@@ -316,22 +317,24 @@
 <!-- END: Mobile Menu Drawer -->
 <!-- BEGIN: MainContent -->
 <main class="relative flex flex-col items-center p-6 z-20 w-full max-w-6xl mx-auto pt-20">
-<!-- Desktop: marranito alineado a la derecha -->
-<div class="hidden lg:flex justify-end w-full pr-[10%] mb-6 items-center">
-<div class="w-[140px] floating-bills">
-<img alt="Marranito" id="marranito-desktop" class="w-full h-auto object-contain" src="images/imagenes%20de%20las%20categorias/categorias-2.png">
+<!-- Marranito centrado en TODAS las vistas + texto guía (modo ahorro en negrilla) -->
+<div class="flex items-center justify-center gap-3 w-full mt-4 mb-3">
+<div class="relative shrink-0">
+<div class="flex items-center justify-center text-center px-5 py-3 max-w-[58vw] sm:max-w-[300px]" style="background-image: url('images/recuadro%20amarillo.png'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center;">
+<p class="font-fredoka font-bold text-[clamp(0.8rem, 2.6vw, 1.05rem)] leading-snug" style="color:#180F43;">
+Veamos las maneras en que estemos en <strong class="font-bold">modo ahorro</strong>
+</p>
 </div>
+<div class="absolute -right-[9px] top-1/2 -translate-y-1/2 w-0 h-0 border-y-[7px] border-l-[10px] border-y-transparent" style="border-left-color:#E4AF20;"></div>
 </div>
-<!-- Mobile: marranito centrado pequeño -->
-<div class="flex flex-col items-center w-full mb-3 lg:hidden">
 <div class="floating-bills">
-<img alt="Marranito" id="marranito-mobile" class="w-[100px] h-auto object-contain" src="images/imagenes%20de%20las%20categorias/categorias-2.png">
+<img alt="Marranito" id="marranito-mobile" class="w-[110px] lg:w-[150px] h-auto object-contain" src="images/imagenes%20de%20las%20categorias/categorias-2.png">
 </div>
 </div>
 <!-- Mobile Action Buttons -->
-<div class="w-full flex flex-col lg:hidden mt-4 mx-auto max-w-[280px] space-y-4 tooltip-group" id="mobile-buttons-group">
+<div class="w-full flex flex-col mt-4 mx-auto max-w-[320px] lg:max-w-[380px] space-y-6 tooltip-group" id="mobile-buttons-group">
 <div class="relative w-full flex justify-center z-30 btn-container" id="container-bancos-mobile">
-<button class="bg-white text-lukash-dark font-rubik font-semibold text-lg rounded-xl btn-3d w-full text-center border-2 border-lukash-dark px-4 py-1.5 toggle-btn" onclick="toggleTooltip('tooltip-bancos-mobile', 'container-bancos-mobile')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: 340px; height: 40px; display: flex; align-items: center; justify-content: center; padding: 0px;">1. Bancos tradicionales</button>
+<button class="bg-white text-lukash-dark font-rubik font-semibold text-lg rounded-xl btn-3d w-full text-center border-2 border-lukash-dark px-4 py-1.5 toggle-btn" onclick="toggleTooltip('tooltip-bancos-mobile', 'container-bancos-mobile')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: 100%; max-width: 340px; height: 44px; display: flex; align-items: center; justify-content: center; padding: 0px;">1. Bancos tradicionales</button>
 <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[280px] z-50 tooltip-content hidden" id="tooltip-bancos-mobile">
 <div class="bg-lukash-yellow rounded-xl p-4 shadow-xl border-2 border-black/20 relative" style="background-color: rgb(241, 236, 230);">
 <div class="absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-black/20"></div>
@@ -341,7 +344,7 @@
 </div>
 </div>
 <div class="relative w-full flex justify-center z-30 btn-container" id="container-billeteras-mobile">
-<button class="bg-white text-lukash-dark font-rubik font-semibold text-lg rounded-xl btn-3d w-full text-center border-2 border-lukash-dark px-4 py-1.5 toggle-btn" onclick="toggleTooltip('tooltip-billeteras-mobile', 'container-billeteras-mobile')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: 340px; height: 40px; display: flex; align-items: center; justify-content: center; padding: 0px;">
+<button class="bg-white text-lukash-dark font-rubik font-semibold text-lg rounded-xl btn-3d w-full text-center border-2 border-lukash-dark px-4 py-1.5 toggle-btn" onclick="toggleTooltip('tooltip-billeteras-mobile', 'container-billeteras-mobile')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: 100%; max-width: 340px; height: 44px; display: flex; align-items: center; justify-content: center; padding: 0px;">
       2. Billeteras digitales
     </button>
 <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[280px] z-50 tooltip-content hidden" id="tooltip-billeteras-mobile">
@@ -353,7 +356,7 @@
 </div>
 </div>
 <div class="relative w-full flex justify-center z-30 btn-container" id="container-cuentas-mobile">
-<button class="bg-white text-lukash-dark font-rubik font-semibold text-lg rounded-xl btn-3d w-full text-center border-2 border-lukash-dark px-4 py-1.5 toggle-btn" onclick="toggleTooltip('tooltip-cuentas-mobile', 'container-cuentas-mobile')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: 340px; height: 40px; display: flex; align-items: center; justify-content: center; padding: 0px;">
+<button class="bg-white text-lukash-dark font-rubik font-semibold text-lg rounded-xl btn-3d w-full text-center border-2 border-lukash-dark px-4 py-1.5 toggle-btn" onclick="toggleTooltip('tooltip-cuentas-mobile', 'container-cuentas-mobile')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: 100%; max-width: 340px; height: 44px; display: flex; align-items: center; justify-content: center; padding: 0px;">
       3. Cuentas de alto rendimiento
     </button>
 <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[280px] z-50 tooltip-content hidden" id="tooltip-cuentas-mobile">
@@ -365,7 +368,7 @@
 </div>
 </div>
 <div class="relative w-full flex justify-center z-30 btn-container" id="container-cdt-mobile">
-<button class="bg-white text-lukash-dark font-rubik font-semibold text-lg rounded-xl btn-3d w-full text-center border-2 border-lukash-dark px-4 py-1.5 toggle-btn" onclick="toggleTooltip('tooltip-cdt-mobile', 'container-cdt-mobile')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: 340px; height: 40px; display: flex; align-items: center; justify-content: center; padding: 0px;">
+<button class="bg-white text-lukash-dark font-rubik font-semibold text-lg rounded-xl btn-3d w-full text-center border-2 border-lukash-dark px-4 py-1.5 toggle-btn" onclick="toggleTooltip('tooltip-cdt-mobile', 'container-cdt-mobile')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: 100%; max-width: 340px; height: 44px; display: flex; align-items: center; justify-content: center; padding: 0px;">
       4. CDT (Certificado a término)
     </button>
 <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[280px] z-50 tooltip-content hidden" id="tooltip-cdt-mobile">
@@ -377,85 +380,12 @@
 </div>
 </div>
 </div>
-<!-- Desktop Action Buttons -->
-<div class="hidden lg:block relative w-full h-[500px] mt-12 tooltip-group" id="desktop-buttons-group">
-<div class="absolute z-30 btn-container" id="container-bancos-desktop" style="top: 5%; left: 5%;">
-<button class="bg-white text-lukash-dark font-rubik font-semibold text-xl rounded-xl btn-3d px-6 py-4 text-center border-2 border-lukash-dark toggle-btn" onclick="toggleTooltip('tooltip-bancos-desktop', 'container-bancos-desktop')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: auto; min-width: 340px; height: 40px; display: flex; align-items: center; justify-content: center; white-space: nowrap; padding-left: 1.5rem; padding-right: 1.5rem;">1. Bancos tradicionales</button>
-<div class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[360px] z-50 tooltip-content hidden" id="tooltip-bancos-desktop">
-<div class="bg-lukash-yellow rounded-xl p-5 shadow-2xl border-2 border-black/20 relative" style="background-color: rgb(241, 236, 230);">
-<div class="absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-black/20"></div>
-<div class="absolute -top-[10px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-lukash-yellow" style="border-bottom-color: rgb(241, 236, 230);"></div>
-<p class="font-roboto text-sm md:text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Bancolombia y Davivienda</strong><br>son seguros, pero tu dinero<br>crece muy poco.</p><p class="isSelectedEnd"><strong>Tasa: 0.5%–1% anual</strong><br><strong>Inflación: ~8%</strong></p><p class="">aunque ganas algo de interés,<br>tu dinero pierde valor<br>con el tiempo.</p><p class=""></p>
-</div>
-</div>
-</div>
-<div class="absolute z-30 btn-container" id="container-cuentas-desktop" style="top: 25%; right: 15%;">
-<button class="bg-white text-lukash-dark font-rubik font-semibold text-xl rounded-xl btn-3d px-6 py-4 text-center border-2 border-lukash-dark toggle-btn" onclick="toggleTooltip('tooltip-cuentas-desktop', 'container-cuentas-desktop')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: auto; min-width: 340px; height: 40px; display: flex; align-items: center; justify-content: center; white-space: nowrap; padding-left: 1.5rem; padding-right: 1.5rem;">3. Cuentas de alto rendimiento</button>
-<div class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[360px] z-50 tooltip-content hidden" id="tooltip-cuentas-desktop">
-<div class="bg-lukash-yellow rounded-xl p-5 shadow-2xl border-2 border-black/20 relative" style="background-color: rgb(241, 236, 230);">
-<div class="absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-black/20"></div>
-<div class="absolute -top-[10px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-lukash-yellow" style="border-bottom-color: rgb(241, 236, 230);"></div>
-<p class="font-roboto text-sm md:text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Nu Bank y Lulo Bank</strong>, aquí<br>tu dinero sí empieza a<br>crecer.</p><p class="isSelectedEnd"><strong>Tasa: 8%–10% anual</strong><br><strong>Inflación: ~8%</strong></p><p class="">tu dinero iguala o supera la<br>inflación.</p><p class=""></p>
-</div>
-</div>
-</div>
-<div class="absolute z-30 btn-container" id="container-billeteras-desktop" style="top: 55%; left: 15%;">
-<button class="bg-white text-lukash-dark font-rubik font-semibold text-xl rounded-xl btn-3d px-6 py-4 text-center border-2 border-lukash-dark toggle-btn" onclick="toggleTooltip('tooltip-billeteras-desktop', 'container-billeteras-desktop')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: auto; min-width: 340px; height: 40px; display: flex; align-items: center; justify-content: center; white-space: nowrap; padding-left: 1.5rem; padding-right: 1.5rem;">2. Billeteras digitales</button>
-<div class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[360px] z-50 tooltip-content hidden" id="tooltip-billeteras-desktop">
-<div class="bg-lukash-yellow rounded-xl p-5 shadow-2xl border-2 border-black/20 relative" style="background-color: rgb(241, 236, 230);">
-<div class="absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-black/20"></div>
-<div class="absolute -top-[10px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-lukash-yellow" style="border-bottom-color: rgb(241, 236, 230);"></div>
-<p class="font-roboto text-sm md:text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Nequi y Daviplata</strong> son<br>prácticos, pero tu dinero<br>casi no genera rendimien-<br>tos.</p><p class="isSelectedEnd"><strong>Tasa: 0%–1%</strong><br><strong>Inflación: ~8%</strong></p><p class="">con la inflación, cada año<br>vale menos.</p><p class=""></p>
-</div>
-</div>
-</div>
-<div class="absolute z-30 btn-container" id="container-cdt-desktop" style="top: 75%; right: 5%;">
-<button class="bg-white text-lukash-dark font-rubik font-semibold text-xl rounded-xl btn-3d px-6 py-4 text-center border-2 border-lukash-dark toggle-btn" onclick="toggleTooltip('tooltip-cdt-desktop', 'container-cdt-desktop')" style="background-color: rgb(237, 214, 220); border-color: rgba(255, 255, 255, 0.5); box-shadow: rgba(255, 255, 255, 0.3) 0px 4px 0px; width: auto; min-width: 340px; height: 40px; display: flex; align-items: center; justify-content: center; white-space: nowrap; padding-left: 1.5rem; padding-right: 1.5rem;">4. CDT (Certificado a término)</button>
-<div class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[360px] z-50 animate-fade-in-up hidden tooltip-content" id="tooltip-cdt-desktop">
-<div class="bg-lukash-yellow rounded-xl p-5 shadow-2xl border-2 border-black/20 relative" style="background-color: rgb(241, 236, 230);">
-<div class="absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-black/20"></div>
-<div class="absolute -top-[10px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-lukash-yellow" style="border-bottom-color: rgb(241, 236, 230);"></div>
-<p class="font-roboto text-sm md:text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Nu Bank y Lulo Bank</strong>, aquí<br>tu dinero sí empieza a<br>crecer.</p><p class="isSelectedEnd"><strong>Tasa: 8%–10% anual</strong><br><strong>Inflación: ~8%</strong></p><p class="">tu dinero iguala o supera la<br>inflación.</p><p class=""></p>
-</div>
-</div>
-</div>
-</div>
+<!-- Opciones de ahorro: layout unificado centrado (móvil y escritorio).
+     Los botones viven en la columna centrada #mobile-buttons-group y sus
+     tooltips se despliegan centrados debajo de cada botón en todas las vistas. -->
 
 <!-- ===== Botón compacto para abrir el Simulador ===== -->
-<div class="w-full mt-6 mb-4 flex flex-col items-center">
-  <!-- Botón compacto de apertura -->
-  <button id="btn-abrir-simulador"
-          class="font-fredoka font-bold text-base md:text-lg uppercase tracking-wider rounded-2xl px-6 py-3 transition-all duration-150 flex items-center gap-2 shadow-md cursor-pointer"
-          style="background-color:#E7C11F; color:#180F43; box-shadow:0 4px 0 #C4A21A; border: 2px solid #180F43;"
-          onmouseover="this.style.transform='scale(1.04)'"
-          onmouseout="this.style.transform='scale(1)'"
-          onmousedown="this.style.transform='translateY(2px)'; this.style.boxShadow='0 2px 0 #C4A21A';"
-          onmouseup="this.style.transform='scale(1.04)'; this.style.boxShadow='0 4px 0 #C4A21A';">
-    <span>🎮</span> <span>ABRIR SIMULADOR</span>
-  </button>
 
-  <!-- Panel del simulador (oculto inicialmente, se despliega con animación) -->
-  <div id="panel-simulador" class="w-full"
-       style="max-height:0; overflow:hidden; transition: max-height 0.7s cubic-bezier(0.4,0,0.2,1), opacity 0.5s ease; opacity:0;">
-    <div class="mt-4 rounded-3xl overflow-hidden shadow-2xl border-4" style="border-color:#180F43; background:#180F43;">
-      <!-- Barra superior del panel -->
-      <div class="flex items-center justify-between px-6 py-3" style="background:#180F43;">
-        <span class="font-fredoka font-bold text-lg" style="color:#E7C11F;">🎮 Simulador de Ahorro</span>
-        <button id="btn-cerrar-simulador"
-                class="font-bold text-2xl leading-none transition-transform hover:scale-110 cursor-pointer"
-                style="color:#E7C11F;" aria-label="Cerrar simulador">&times;</button>
-      </div>
-      <!-- iframe del simulador -->
-      <iframe id="iframe-simulador"
-              src=""
-              data-src="simulador.html?embed=1"
-              title="Simulador de Ahorro LUKASH"
-              style="width:100%; height:700px; border:none; display:block; background:#180F43;"
-              loading="lazy">
-      </iframe>
-    </div>
-  </div>
-</div>
 
 </main>
 
@@ -733,7 +663,7 @@
      - Al abrirse sola, usa su propio scroll de ventana (si hay).
      Escala, rota y eleva el marranito proporcional al avance del scroll. */
   (function () {
-    var marranitos = document.querySelectorAll('#marranito-desktop, #marranito-mobile');
+    var marranitos = document.querySelectorAll('#marranito-mobile');
     function applyProgress(p) {
       if (!marranitos.length) return;
       p = Math.min(Math.max(p || 0, 0), 1);
