@@ -35,6 +35,15 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+
+    /* Fade in: la información aparece al entrar desde el gesto de deslizar */
+    body.fade-in-page {
+      animation: page-fade-in 0.4s ease-out;
+    }
+    @keyframes page-fade-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
   </style>
 <style data-purpose="custom-effects">
     .btn-3d {
@@ -215,8 +224,27 @@
         html.dark #desktopCategoriasMenu > div { background-color: rgba(30,20,70,0.95) !important; color: #EEE8E0; }
         html.dark #desktopCategoriasMenu a { color: #EEE8E0; }
     </style>
+<style data-purpose="modo-embebido">
+        /* Cuando se carga con ?embed=1 (dentro del scroll de modoAhorrointro.html)
+           se ocultan header, menú, FAB y chat para no duplicar los de la pantalla 1. */
+        body.embedded #main-header,
+        body.embedded #mobileMenu,
+        body.embedded #particle-container,
+        body.embedded .fixed.bottom-6.right-6,
+        body.embedded footer {
+          display: none !important;
+        }
+        body.embedded {
+          min-height: 100vh;
+        }
+        /* Contenido centrado dentro del iframe (sin espacio de header) */
+        body.embedded main {
+          padding-top: 0;
+        }
+    </style>
 </head>
-<body class="font-rubik text-slate-800" style="min-height: 100vh; background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBv30VP4LCdd9maibDUE6gSoXu_cv79xLbFXS2Ora-eyRo5s-z9qEcNDUI04nROTOnsFtQ-2WSZZ_elx0Zs8eXR6imeaqrIJ0M8GtW7_NA_SAx5oOfnjuVXz5Kozc7W2yjQjHiNd3WpX4tIQdP4LKGJwpRel1gqCa-210cfmQZS9rYu54qBRk77uIf6zB8B_FtpyMrY0fwyRSmmuYDPBxGVEw-5TyezrbYi_SAMg-ct4hsLLtU4W2z_0vWuJEBFnmTuOWrubw3la1yhLQ&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; background-attachment: fixed; overflow-y: auto;">
+<body class="font-rubik text-slate-800 fade-in-page" style="min-height: 100vh; background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBv30VP4LCdd9maibDUE6gSoXu_cv79xLbFXS2Ora-eyRo5s-z9qEcNDUI04nROTOnsFtQ-2WSZZ_elx0Zs8eXR6imeaqrIJ0M8GtW7_NA_SAx5oOfnjuVXz5Kozc7W2yjQjHiNd3WpX4tIQdP4LKGJwpRel1gqCa-210cfmQZS9rYu54qBRk77uIf6zB8B_FtpyMrY0fwyRSmmuYDPBxGVEw-5TyezrbYi_SAMg-ct4hsLLtU4W2z_0vWuJEBFnmTuOWrubw3la1yhLQ&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; background-attachment: fixed; overflow-y: auto;">
+<script>if (new URLSearchParams(location.search).get('embed') === '1') document.body.classList.add('embedded');</script>
 <!-- BEGIN: MainHeader -->
 <header class="fixed top-0 left-0 right-0 bg-lukash-yellow w-full h-16 flex items-center justify-between px-4 z-50 border-b-4 border-black/10" id="main-header">
 <!-- Menu Icon -->
@@ -246,15 +274,15 @@
  <button class="flex items-center gap-1 transition-colors hover:text-[#f7efd0]" id="desktopCategoriasBtn">CATEGORIAS<svg class="w-4 h-4 transition-transform duration-300" id="desktopCategoriasArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
  <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 hidden" id="desktopCategoriasMenu">
  <div class="bg-lukash-bg-modal/95 backdrop-blur-md text-lukash-dark rounded-2xl shadow-2xl border-2 border-lukash-yellow p-4 w-64 flex flex-col space-y-1 font-bold text-lg">
- <a class="hover:bg-[#eac62f] hover:text-white transition-colors rounded-lg px-4 py-2.5" href="modo-ahorro.html">MODO AHORRO</a>
- <a class="hover:bg-[#eac62f] hover:text-white transition-colors rounded-lg px-4 py-2.5" href="rindiendo-money.html">RINDIENDO LA MONEY</a>
- <a class="hover:bg-[#eac62f] hover:text-white transition-colors rounded-lg px-4 py-2.5" href="cuentas-claras.html">CUENTAS CLARAS</a>
+ <a class="hover:bg-[#eac62f] hover:text-white transition-colors rounded-lg px-4 py-2.5" href="modoAhorrointro.html">MODO AHORRO</a>
+ <a class="hover:bg-[#eac62f] hover:text-white transition-colors rounded-lg px-4 py-2.5" href="invertir.html">RINDIENDO LA MONEY</a>
+ <a class="hover:bg-[#eac62f] hover:text-white transition-colors rounded-lg px-4 py-2.5" href="cuentasclaras.html">CUENTAS CLARAS</a>
  <a class="hover:bg-[#eac62f] hover:text-white transition-colors rounded-lg px-4 py-2.5" href="cero-enredor.html">CERO ENREDOS</a>
  </div>
  </div>
  </div>
  <a href="Registro.html" class="transition-colors hover:text-[#f7efd0]">REGISTRO</a>
- <span class="transition-colors hover:text-[#f7efd0]">NOSOTROS</span>
+ <a href="nosotros.html" class="transition-colors hover:text-[#f7efd0]">NOSOTROS</a>
  <a href="contactanos.html" class="transition-colors hover:text-[#f7efd0]">CONTACTANOS</a>
 </div><div class="flex items-center"><button class="p-2 theme-toggle" type="button" aria-label="Cambiar tema"><svg class="icon-moon" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><svg class="icon-sun" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg></button><svg fill="none" height="32" viewBox="0 0 28 28" width="32" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="2"></circle><circle cx="14" cy="10" r="4" stroke="currentColor" stroke-width="2"></circle><path d="M6 22C6 18.6863 8.68629 16 12 16H16C19.3137 16 22 18.6863 22 22" stroke="currentColor" stroke-width="2"></path></svg></div></nav></div></header>
 <!-- END: MainHeader -->
@@ -273,9 +301,9 @@
 <div class="w-full">
  <button class="flex items-center justify-between w-full text-lg hover:text-lukash-pink transition-colors" id="mobileCategoriasBtn" style="color: rgb(24, 15, 67);">CATEGORIAS<svg class="w-5 h-5 transition-transform duration-300" id="mobileCategoriasArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
  <div id="mobileCategoriasMenu" class="hidden mt-4 pl-4 border-l-4 border-lukash-pink/30 space-y-4 flex flex-col">
- <a class="hover:text-lukash-pink transition-colors text-base" href="modo-ahorro.html" style="color: rgb(24, 15, 67);">MODO AHORRO</a>
- <a class="hover:text-lukash-pink transition-colors text-base" href="rindiendo-money.html" style="color: rgb(24, 15, 67);">RINDIENDO LA MONEY</a>
- <a class="hover:text-lukash-pink transition-colors text-base" href="cuentas-claras.html" style="color: rgb(24, 15, 67);">CUENTAS CLARAS</a>
+ <a class="hover:text-lukash-pink transition-colors text-base" href="modoAhorrointro.html" style="color: rgb(24, 15, 67);">MODO AHORRO</a>
+ <a class="hover:text-lukash-pink transition-colors text-base" href="invertir.html" style="color: rgb(24, 15, 67);">RINDIENDO LA MONEY</a>
+ <a class="hover:text-lukash-pink transition-colors text-base" href="cuentasclaras.html" style="color: rgb(24, 15, 67);">CUENTAS CLARAS</a>
  <a class="hover:text-lukash-pink transition-colors text-base" href="cero-enredor.html" style="color: rgb(24, 15, 67);">CERO ENREDOS</a>
  </div>
  </div>
@@ -287,33 +315,17 @@
 </div>
 <!-- END: Mobile Menu Drawer -->
 <!-- BEGIN: MainContent -->
-<main class="relative flex flex-col items-center min-h-[calc(100vh-64px)] p-6 z-20 w-full max-w-6xl mx-auto justify-start pt-8">
-<div class="relative w-full mb-8 lg:hidden"></div>
-<!-- Desktop Top Section -->
-<div class="hidden lg:flex justify-end w-full pr-[10%] mb-12 items-center"><div class="flex items-center space-x-8">
-<div class="relative bg-lukash-yellow rounded-xl px-8 py-4 shadow-lg">
-<p class="font-roboto text-xl text-lukash-dark">Veamos las maneras para que estemos en <strong>MODO AHORRO</strong></p>
-<div class="absolute right-[-24px] top-1/2 -translate-y-1/2 w-0 h-0 border-t-[15px] border-t-transparent border-b-[15px] border-b-transparent border-l-[24px] border-l-lukash-yellow"></div>
-</div>
-<div class="w-[200px] floating-bills">
-<img alt="Ahorro" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrsDnTa3CfQ9sVNnBNV9QS2v0x-EypGU5POK2LUUrbkPmNUr-FDujFUIEyyHAYND0_gAhSeuZwRCtpCTWGDMrJxvuvrlvUC8_JT9Y4d0GEPnv4gkeRQVN5Y4HEQ-isi5rHwGbkPOrunKdO86oECdobHpjuUu7a81HA1CRFZXefkvgqpb7Bw9y5YoLEJt9JtmFlzWBUa1FrhPNawvhHedz66VEKZI3NQmFntTrMg02KBGWderZmUtP5c1ULhvNAGM6hew">
-</div>
-</div></div>
-<!-- Mobile Speech Bubble and Illustration Container -->
-<div class="flex flex-col items-center w-full mt-4 mb-4 lg:hidden">
-<!-- 3D Speech Bubble -->
-<div class="bubble-container w-[280px] h-[160px] relative z-10 -ml-4">
-<div class="bubble-3d-custom w-full h-full flex items-center justify-center p-6 text-center shadow-xl" style="background-color: rgb(255, 255, 255); border-bottom: 4px solid rgb(209, 209, 209); border-right: 2px solid rgb(224, 224, 224); box-shadow: rgb(209, 209, 209) 3px 4px 0px, rgba(0, 0, 0, 0.05) -2px -2px 10px inset;">
-<p class="text-lukash-dark w-full" style="color: rgb(19, 8, 62);">
-<span class="block font-roboto font-normal text-sm mb-1 leading-tight">Veamos las maneras para que estemos en</span>
-<span class="block font-fredoka font-bold text-2xl uppercase tracking-wide">MODO AHORRO</span>
-</p>
-
+<main class="relative flex flex-col items-center p-6 z-20 w-full max-w-6xl mx-auto pt-20">
+<!-- Desktop: marranito alineado a la derecha -->
+<div class="hidden lg:flex justify-end w-full pr-[10%] mb-6 items-center">
+<div class="w-[140px] floating-bills">
+<img alt="Marranito" id="marranito-desktop" class="w-full h-auto object-contain" src="images/imagenes%20de%20las%20categorias/categorias-2.png">
 </div>
 </div>
-<!-- Floating 3D Bills -->
-<div class="mt-3 z-20">
-<img alt="Fajo de billetes 3D" class="w-[160px] h-auto object-contain floating-bills" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf1cxHkCgYCYvvsMijrRz4Wscbjyx6Q5Y28Jthb-hZiJ5HjSXAYwQt487kZC-kh2RJ3q2L_gJpPeT3w7dztuSC66mCI5a8jMM_eh2q3B5II0ej-mRJ3TkcRPUVulR8JTKMdEMdiQCfjAxhXb5wFScEzfduBQLMA3V8N4JDPX8ITqvNQls6PpDivxWMPwrMRlotf20QmW2GrkkY5YRohSi4A1lP31RD4jYkSYy-gpxnFAXBciLX2mh6W1ekdDZeKJojpg">
+<!-- Mobile: marranito centrado pequeño -->
+<div class="flex flex-col items-center w-full mb-3 lg:hidden">
+<div class="floating-bills">
+<img alt="Marranito" id="marranito-mobile" class="w-[100px] h-auto object-contain" src="images/imagenes%20de%20las%20categorias/categorias-2.png">
 </div>
 </div>
 <!-- Mobile Action Buttons -->
@@ -373,7 +385,7 @@
 <div class="bg-lukash-yellow rounded-xl p-5 shadow-2xl border-2 border-black/20 relative" style="background-color: rgb(241, 236, 230);">
 <div class="absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-black/20"></div>
 <div class="absolute -top-[10px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-lukash-yellow" style="border-bottom-color: rgb(241, 236, 230);"></div>
-<p class="font-roboto text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Bancolombia y Davivienda</strong><br>son seguros, pero tu dinero<br>crece muy poco.</p><p class="isSelectedEnd"><strong>Tasa: 0.5%–1% anual</strong><br><strong>Inflación: ~8%</strong></p><p class="">aunque ganas algo de interés,<br>tu dinero pierde valor<br>con el tiempo.</p><p class=""></p>
+<p class="font-roboto text-sm md:text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Bancolombia y Davivienda</strong><br>son seguros, pero tu dinero<br>crece muy poco.</p><p class="isSelectedEnd"><strong>Tasa: 0.5%–1% anual</strong><br><strong>Inflación: ~8%</strong></p><p class="">aunque ganas algo de interés,<br>tu dinero pierde valor<br>con el tiempo.</p><p class=""></p>
 </div>
 </div>
 </div>
@@ -383,7 +395,7 @@
 <div class="bg-lukash-yellow rounded-xl p-5 shadow-2xl border-2 border-black/20 relative" style="background-color: rgb(241, 236, 230);">
 <div class="absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-black/20"></div>
 <div class="absolute -top-[10px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-lukash-yellow" style="border-bottom-color: rgb(241, 236, 230);"></div>
-<p class="font-roboto text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Nu Bank y Lulo Bank</strong>, aquí<br>tu dinero sí empieza a<br>crecer.</p><p class="isSelectedEnd"><strong>Tasa: 8%–10% anual</strong><br><strong>Inflación: ~8%</strong></p><p class="">tu dinero iguala o supera la<br>inflación.</p><p class=""></p>
+<p class="font-roboto text-sm md:text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Nu Bank y Lulo Bank</strong>, aquí<br>tu dinero sí empieza a<br>crecer.</p><p class="isSelectedEnd"><strong>Tasa: 8%–10% anual</strong><br><strong>Inflación: ~8%</strong></p><p class="">tu dinero iguala o supera la<br>inflación.</p><p class=""></p>
 </div>
 </div>
 </div>
@@ -393,7 +405,7 @@
 <div class="bg-lukash-yellow rounded-xl p-5 shadow-2xl border-2 border-black/20 relative" style="background-color: rgb(241, 236, 230);">
 <div class="absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-black/20"></div>
 <div class="absolute -top-[10px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-lukash-yellow" style="border-bottom-color: rgb(241, 236, 230);"></div>
-<p class="font-roboto text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Nequi y Daviplata</strong> son<br>prácticos, pero tu dinero<br>casi no genera rendimien-<br>tos.</p><p class="isSelectedEnd"><strong>Tasa: 0%–1%</strong><br><strong>Inflación: ~8%</strong></p><p class="">con la inflación, cada año<br>vale menos.</p><p class=""></p>
+<p class="font-roboto text-sm md:text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Nequi y Daviplata</strong> son<br>prácticos, pero tu dinero<br>casi no genera rendimien-<br>tos.</p><p class="isSelectedEnd"><strong>Tasa: 0%–1%</strong><br><strong>Inflación: ~8%</strong></p><p class="">con la inflación, cada año<br>vale menos.</p><p class=""></p>
 </div>
 </div>
 </div>
@@ -403,12 +415,94 @@
 <div class="bg-lukash-yellow rounded-xl p-5 shadow-2xl border-2 border-black/20 relative" style="background-color: rgb(241, 236, 230);">
 <div class="absolute -top-[12px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[12px] border-b-black/20"></div>
 <div class="absolute -top-[10px] left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-lukash-yellow" style="border-bottom-color: rgb(241, 236, 230);"></div>
-<p class="font-roboto text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Nu Bank y Lulo Bank</strong>, aquí<br>tu dinero sí empieza a<br>crecer.</p><p class="isSelectedEnd"><strong>Tasa: 8%–10% anual</strong><br><strong>Inflación: ~8%</strong></p><p class="">tu dinero iguala o supera la<br>inflación.</p><p class=""></p>
+<p class="font-roboto text-sm md:text-base text-lukash-dark text-left pr-4"></p><p class="isSelectedEnd"><strong>Nu Bank y Lulo Bank</strong>, aquí<br>tu dinero sí empieza a<br>crecer.</p><p class="isSelectedEnd"><strong>Tasa: 8%–10% anual</strong><br><strong>Inflación: ~8%</strong></p><p class="">tu dinero iguala o supera la<br>inflación.</p><p class=""></p>
 </div>
 </div>
 </div>
 </div>
+
+<!-- ===== Botón compacto para abrir el Simulador ===== -->
+<div class="w-full mt-6 mb-4 flex flex-col items-center">
+  <!-- Botón compacto de apertura -->
+  <button id="btn-abrir-simulador"
+          class="font-fredoka font-bold text-base md:text-lg uppercase tracking-wider rounded-2xl px-6 py-3 transition-all duration-150 flex items-center gap-2 shadow-md cursor-pointer"
+          style="background-color:#E7C11F; color:#180F43; box-shadow:0 4px 0 #C4A21A; border: 2px solid #180F43;"
+          onmouseover="this.style.transform='scale(1.04)'"
+          onmouseout="this.style.transform='scale(1)'"
+          onmousedown="this.style.transform='translateY(2px)'; this.style.boxShadow='0 2px 0 #C4A21A';"
+          onmouseup="this.style.transform='scale(1.04)'; this.style.boxShadow='0 4px 0 #C4A21A';">
+    <span>🎮</span> <span>ABRIR SIMULADOR</span>
+  </button>
+
+  <!-- Panel del simulador (oculto inicialmente, se despliega con animación) -->
+  <div id="panel-simulador" class="w-full"
+       style="max-height:0; overflow:hidden; transition: max-height 0.7s cubic-bezier(0.4,0,0.2,1), opacity 0.5s ease; opacity:0;">
+    <div class="mt-4 rounded-3xl overflow-hidden shadow-2xl border-4" style="border-color:#180F43; background:#180F43;">
+      <!-- Barra superior del panel -->
+      <div class="flex items-center justify-between px-6 py-3" style="background:#180F43;">
+        <span class="font-fredoka font-bold text-lg" style="color:#E7C11F;">🎮 Simulador de Ahorro</span>
+        <button id="btn-cerrar-simulador"
+                class="font-bold text-2xl leading-none transition-transform hover:scale-110 cursor-pointer"
+                style="color:#E7C11F;" aria-label="Cerrar simulador">&times;</button>
+      </div>
+      <!-- iframe del simulador -->
+      <iframe id="iframe-simulador"
+              src=""
+              data-src="simulador.html?embed=1"
+              title="Simulador de Ahorro LUKASH"
+              style="width:100%; height:700px; border:none; display:block; background:#180F43;"
+              loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</div>
+
 </main>
+
+<script data-purpose="simulador-inline">
+  (function () {
+    var btnAbrir   = document.getElementById('btn-abrir-simulador');
+    var btnCerrar  = document.getElementById('btn-cerrar-simulador');
+    var panel      = document.getElementById('panel-simulador');
+    var iframe     = document.getElementById('iframe-simulador');
+    var abierto    = false;
+
+    function abrirSimulador() {
+      if (abierto) return;
+      abierto = true;
+      /* Carga el iframe solo la primera vez */
+      if (!iframe.src || iframe.src === window.location.href) {
+        iframe.src = iframe.getAttribute('data-src');
+      }
+      panel.style.maxHeight = '800px';
+      panel.style.opacity   = '1';
+      btnAbrir.innerHTML    = '<span>✅</span> <span>SIMULADOR ABIERTO</span>';
+      btnAbrir.style.opacity = '0.8';
+      btnAbrir.style.cursor = 'default';
+      btnAbrir.onmouseover = null;
+      btnAbrir.onmouseout  = null;
+      /* Scroll suave hasta el panel */
+      setTimeout(function () {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+
+    function cerrarSimulador() {
+      abierto = false;
+      panel.style.maxHeight = '0';
+      panel.style.opacity   = '0';
+      btnAbrir.innerHTML    = '<span>🎮</span> <span>ABRIR SIMULADOR</span>';
+      btnAbrir.style.opacity = '1';
+      btnAbrir.style.cursor = 'pointer';
+      btnAbrir.onmouseover = function(){ this.style.transform='scale(1.04)'; };
+      btnAbrir.onmouseout  = function(){ this.style.transform='scale(1)'; };
+      btnAbrir.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    btnAbrir.addEventListener('click', abrirSimulador);
+    btnCerrar.addEventListener('click', cerrarSimulador);
+  })();
+</script>
 <!-- END: MainContent -->
 <!-- BEGIN: FloatingActionButton & Chat Window -->
 <div class="fixed inset-0 pointer-events-none z-[60]" id="particle-container"></div>
@@ -633,6 +727,47 @@
 <!-- END: Scripts -->
 
 
+<script data-purpose="marranito-scroll">
+  /* El marranito reacciona al scroll:
+     - Dentro de modoAhorrointro.html recibe el progreso de scroll vía postMessage.
+     - Al abrirse sola, usa su propio scroll de ventana (si hay).
+     Escala, rota y eleva el marranito proporcional al avance del scroll. */
+  (function () {
+    var marranitos = document.querySelectorAll('#marranito-desktop, #marranito-mobile');
+    function applyProgress(p) {
+      if (!marranitos.length) return;
+      p = Math.min(Math.max(p || 0, 0), 1);
+      var scale = 1 + p * 0.5;
+      var rot = p * 10;
+      var ty = -(p * 36);
+      marranitos.forEach(function (el) {
+        el.style.transform =
+          'scale(' + scale.toFixed(3) + ') rotate(' + rot.toFixed(2) + 'deg) translateY(' + ty.toFixed(1) + 'px)';
+      });
+    }
+    /* Recibe el progreso desde modoAhorrointro.html */
+    window.addEventListener('message', function (e) {
+      if (e.data && e.data.type === 'lukash-scroll') applyProgress(e.data.progress);
+    });
+    /* Modo standalone: se usa el scroll de la propia ventana */
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        var doc = document.documentElement;
+        var maxScroll = (doc.scrollHeight || document.body.scrollHeight) - window.innerHeight;
+        if (maxScroll <= 0) { applyProgress(0); return; }
+        applyProgress(window.scrollY / maxScroll);
+      });
+    }, { passive: true });
+  })();
+</script>
+
+<!-- BEGIN: Footer -->
+
+
 
 
 <script data-purpose="theme-toggle">
@@ -653,4 +788,25 @@
     });
   })();
 </script>
+
+<!-- BEGIN: Footer -->
+<footer class="bg-lukash-dark py-8 px-4 z-20 relative" style="color: #E7C11F;">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<img alt="LUKA Logo" class="h-12 drop-shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYRpEfrEAXglfH6g6bdTAiltJsJB-DrFhYXNpv6pCllmuHj7ZTXjF1qy9e06r27C5bLil8PgTWLPE-mWnWPz_8ibC0PbXo0mgx7meRO8nUsUV1qLPggd-nZBPOPjkThKh-Ou-I6nHQkWDHioMR9pUwKGZWmx0Cixdb5lqH1bSqo8ixHeoNWq9_ax4LS-cBhRHRiCd4KtV6Bz9ISa3Kd85RkHKMPOgK3YST2EQZs-TyZzikR3_DpMQVbNJtsVzgzE3r_g">
+<p class="font-rubik text-xs text-white/60 text-center md:text-left">Educaci&#243;n financiera sin morir en el intento.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-4 font-fredoka font-bold text-sm uppercase">
+<a href="index.html?intro=1" class="hover:text-white transition-colors">Inicio</a>
+<a href="modoAhorrointro.html" class="hover:text-white transition-colors">Modo Ahorro</a>
+<a href="invertir.html" class="hover:text-white transition-colors">Rindiendo la Money</a>
+<a href="cuentasclaras.html" class="hover:text-white transition-colors">Cuentas Claras</a>
+<a href="cero-enredor.html" class="hover:text-white transition-colors">Cero Enredos</a>
+<a href="nosotros.html" class="hover:text-white transition-colors">Nosotros</a>
+<a href="contactanos.html" class="hover:text-white transition-colors">Contacto</a>
+</nav>
+<p class="text-white/40 text-xs font-roboto text-center">&#169; 2026 LUKA. Todos los derechos reservados.</p>
+</div>
+</footer>
+<!-- END: Footer -->
 </body></html>
